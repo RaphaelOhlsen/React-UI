@@ -1,38 +1,29 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Paper, Tabs, Tab } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
+export default ({muscles, onSelect, category}) => {
+  const index = category 
+    ? muscles.findIndex(group => group === category) + 1
+    : 0
 
-export default ({muscles}) => {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue); 
-  };
+  const onIndexSelect = (e, index) => 
+    onSelect(index === 0 ? '' : muscles[index-1]);
 
   return (
-    <Paper className={classes.root}>
+    <Paper>
       <Tabs
-        value={value}
-        onChange={handleChange}
+        value={index}
+        onChange = {onIndexSelect}
         indicatorColor="primary"
         textColor="primary"
         centered
       >
         <Tab label="All" />
-        { muscles.map((item,idx) =>(
-          <Tab key={idx} label={item} />
+        { muscles.map(group =>(
+          <Tab key={group} label={group} />
         ))}
         
       </Tabs>
     </Paper>
-  );
+  )
 }
