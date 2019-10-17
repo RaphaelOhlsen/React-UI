@@ -9,8 +9,8 @@ class Header extends Component {
     return (
       <AppBar position="static">
         <Toolbar>
-        <Typography variant="h4" color="white">
-          Teste
+        <Typography variant="h4" color="inherit">
+          Exercise Database
         </Typography>
         </Toolbar>
       </AppBar>

@@ -10,12 +10,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CenteredTabs() {
+export default ({muscles}) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setValue(newValue); 
   };
 
   return (
@@ -27,9 +27,11 @@ export default function CenteredTabs() {
         textColor="primary"
         centered
       >
-        <Tab label="Item One" />
-        <Tab label="Item Two" />
-        <Tab label="Item Three" />
+        <Tab label="All" />
+        { muscles.map((item,idx) =>(
+          <Tab key={idx} label={item} />
+        ))}
+        
       </Tabs>
     </Paper>
   );
